@@ -1,0 +1,31 @@
+---
+title: "Flagstaff_Weather"
+author: "Anna Riley"
+date: "2023-12-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+
+```{r, fig.width = 10}
+precip <- Flagstaff_Weather %>% 
+  filter(PRCP > 0.00)
+
+ggplot(data = precip, aes(x = DATE, y = PRCP)) +
+  geom_point() +
+  labs(title = "Precipitaion In Flagstaff AZ") +
+  labs(x = "Date", y = "Precipitation (in)")
+```
+
+
+```{r}
+temp <- Flagstaff_Weather %>% 
+  mutate(YEAR = year(DATE)) 
+
+ggplot(data = temp, aes(x = YEAR, y = TMAX)) +
+  geom_point()
+```
+
